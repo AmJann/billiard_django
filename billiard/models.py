@@ -1,12 +1,12 @@
 from django.db import models
 import uuid
-from phone_field import PhoneField
+from phonenumber_field.modelfields import PhoneNumberField
 
 class Listing(models.Model):
     uuid = models.UUIDField(primary_key=True,unique=True, auto_created=True, default=uuid.uuid4)
     title = models.CharField(max_length=50, default='Pool Tournament')
     director = models.CharField(max_length=100, default='name')
-    phone_number = models.PhoneField(blank=True, help_text='Contact phone number', E164_only=False)
+    phone_number = PhoneNumberField(blank=True,region="US")
     email = models.EmailField(max_length=50)
     venue = models.CharField(max_length=30)
     address = models.CharField(max_length=100)
@@ -36,12 +36,12 @@ class FeaturedPlayer(models.Model):
 
 class News(models.Model):
     uuid = models.UUIDField(primary_key=True,unique=True, auto_created=True, default=uuid.uuid4)
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=512)
     author = models.CharField(max_length=50)
-    image = models.CharField(max_length=200)
+    image = models.CharField(max_length=255)
     date = models.DateField()
-    article = models.TextField(max_length=2000)
-    description =models.TextField(max_length=200)
+    article_md = models.TextField(max_length=4096)
+    description =models.TextField(max_length=512)
 
     def __str__(self):
         return self.title
