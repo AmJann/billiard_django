@@ -13,7 +13,8 @@ class Listing(models.Model):
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=20)
     zipcode = models.IntegerField(max_length=15)
-    date = models.DateField()
+    start_date = models.DateField()
+    end_date = models.DateField(blank=True, default = None)
     sign_up_time = models.CharField(max_length=10)
     start_time = models.CharField(max_length =10)
     description = models.TextField(max_length = 1000)
@@ -40,8 +41,8 @@ class News(models.Model):
     author = models.CharField(max_length=50)
     image = models.CharField(max_length=255)
     date = models.DateField()
-    article_md = models.TextField(max_length=4096)
-    description =models.TextField(max_length=512)
+    article_md = models.TextField(max_length=4096,blank=True, default = None)
+    description = models.TextField(max_length=512)
 
     def __str__(self):
         return self.title

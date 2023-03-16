@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'billiard',
-    "phonenumber_field",
+    'phonenumber_field',
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
