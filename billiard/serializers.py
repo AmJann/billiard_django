@@ -6,7 +6,7 @@ from .models import News
 class ListingSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Listing
-        fields = ('uuid','title','director', 'phone_number', 'email', 'venue', 'address', 'city', 'state', 'zipcode', 'date', 'sign_up_time', 'start_time', 'description')
+        fields = ('uuid','title','director', 'phone_number', 'email', 'venue', 'address', 'city', 'state', 'zipcode', 'start_date', 'end_date', 'sign_up_time', 'start_time', 'description')
 
 class FeaturedPlayerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
