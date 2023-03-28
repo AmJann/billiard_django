@@ -12,8 +12,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
-import dj_dataase_url
+import dj_database_url
 import environ
+from dotenv import load_dotenv
+
+load_dotenv()
 
 env = environ.Env(
     # set casting, default value
@@ -92,16 +95,16 @@ WSGI_APPLICATION = 'billiard_django.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'billiard',
-    #     'USER': 'billiarduser',
-    #     'PASSWORD': 'billiard',
-    #     'HOST': 'localhost'
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'billiard',
+        'USER': 'billiarduser',
+        'PASSWORD': 'billiard',
+        'HOST': 'localhost'
 
 
-    # }
-    'default': dj_database_url.config(conn_max_age=600)
+    }
+    # 'default': dj_database_url.config(conn_max_age=600)
 
 }
 
@@ -140,8 +143,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATICFILES_DIRS = os.path.join(BASE_DIR,'static'),
+# STATICFILES_DIRS = os.path.join(BASE_DIR,'static'),
 
+STATIC_URL = '/static/'
+STATIC_ROOT=os.path.join(BASE_DIR, "static")
+
+STATICFILES_STORAGE =  'django.contrib.staticfiles.storage.StaticFilesStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
