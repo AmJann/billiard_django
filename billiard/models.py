@@ -43,6 +43,8 @@ class News(models.Model):
     date = models.DateField()
     article_md = models.TextField(max_length=4096,blank=True, default = None)
     description = models.TextField(max_length=512)
+    featured = models.IntegerField(blank=True, default = None)
+    featured_image = models.CharField(max_length=255, blank=True, default = None)
 
     def __str__(self):
         return self.title
