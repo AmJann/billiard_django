@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 from phonenumber_field.modelfields import PhoneNumberField
+from django.contrib.auth.models import User
 
 class Listing(models.Model):
     uuid = models.UUIDField(primary_key=True,unique=True, auto_created=True, default=uuid.uuid4)
@@ -12,7 +13,7 @@ class Listing(models.Model):
     address = models.CharField(max_length=100)
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=20)
-    zipcode = models.IntegerField(max_length=15)
+    zipcode = models.IntegerField()
     start_date = models.DateField()
     end_date = models.DateField(blank=True, default = None)
     sign_up_time = models.CharField(max_length=10)
@@ -48,3 +49,18 @@ class News(models.Model):
 
     def __str__(self):
         return self.title
+
+class Post(models.Model):
+    uuid =   models.UUIDField(primary_key=True,unique=True,auto_created=True, default=uuid.uuid4)
+    title = models.CharField(max_length=255)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ImageField()
+    body = models.TextField(max_length=6000)
+
+    def __str__(self):
+        return self.title + '|' + self.author
+
+        
+    
+    
+
