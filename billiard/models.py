@@ -54,7 +54,7 @@ class Post(models.Model):
     uuid =   models.UUIDField(primary_key=True,unique=True,auto_created=True, default=uuid.uuid4)
     title = models.CharField(max_length=255)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField()
+    image = models.ImageField(blank=True, default=None)
     body = models.TextField(max_length=6000)
 
     def __str__(self):
