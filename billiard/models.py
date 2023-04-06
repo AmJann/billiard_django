@@ -58,7 +58,7 @@ class Post(models.Model):
     body = models.TextField(max_length=6000)
 
     def __str__(self):
-        return self.title + '|' + self.author
+        return f"{self.author} | {self.title}"
 
         
     
